@@ -1,0 +1,26 @@
+npm install --save @mastercard/developers-agent-toolkit
+******************************************************************************************************
+
+import { MastercardDevelopersAgentToolkit } from "@mastercard/developers-agent-toolkit/mcp";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = new MastercardDevelopersAgentToolkit({});
+
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error("Mastercard Developers MCP Server running on stdio");
+}
+
+main().catch((error) => {
+  console.error("Fatal error in main():", error);
+  process.exit(1);
+});
+// Run the the server
+node server.mjs
+***********************************************************************************************************
+Mastercard Developers MCP Server running on stdio
+
+// Configuration
+service	Tells the MCP server to focus on a single service’s documentation	https://developer.mastercard.com/mdes-customer-service/documentation
+apiSpecification	Provides a raw OpenAPI/Swagger spec URL, overriding the service config if both are used	https://static.developer.mastercard.com/content/match/swagger/match-pro.yaml
